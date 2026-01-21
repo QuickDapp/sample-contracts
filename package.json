@@ -1,0 +1,17 @@
+{
+  "name": "quickdapp-sample-contracts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sample smart contracts for QuickDapp Web3 variant",
+  "scripts": {
+    "devnet": "bun devnet.ts",
+    "deploy": "bun deploy.ts",
+    "build": "forge build",
+    "test": "forge test",
+    "clean": "forge clean"
+  },
+  "dependencies": {
+    "hardhat": "^2.22.0",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0"
+  }
+}
