@@ -39,42 +39,34 @@ Keep this running in a separate terminal.
 
 ### 4. Deploy Contracts
 
-In another terminal, build and deploy:
+In another terminal, deploy the contracts:
 
 ```bash
-# Build contracts
-forge build
+# Local development (uses default anvil RPC and test private key)
+bun run deploy
 
-# Deploy ERC20Factory
-forge create src/ERC20Factory.sol:ERC20Factory \
-  --rpc-url http://localhost:8545 \
-  --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+# Deploy to testnet
+CHAIN_RPC=https://sepolia.infura.io/v3/KEY PRIVATE_KEY=0x... bun run deploy
 ```
 
-The private key above is the first Hardhat test account (public, for local dev only).
+The deployed contract address is written to `deployed.txt`.
 
 ## Scripts
 
 | Script | Description |
 |--------|-------------|
 | `bun devnet.ts` | Start local Hardhat node |
+| `bun run deploy` | Build and deploy contracts |
 | `forge build` | Compile contracts |
 | `forge test` | Run contract tests |
 | `forge clean` | Clean build artifacts |
 
-## Deploying to Other Networks
+## Environment Variables
 
-```bash
-# Set your RPC endpoint and private key
-export RPC_URL=https://sepolia.infura.io/v3/YOUR_KEY
-export PRIVATE_KEY=your_private_key
-
-# Deploy
-forge create src/ERC20Factory.sol:ERC20Factory \
-  --rpc-url $RPC_URL \
-  --private-key $PRIVATE_KEY \
-  --broadcast
-```
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `CHAIN_RPC` | RPC endpoint URL | `http://127.0.0.1:8545` |
+| `PRIVATE_KEY` | Deployer private key | First anvil test account |
 
 ## Contract Details
 
